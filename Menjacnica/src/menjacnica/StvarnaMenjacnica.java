@@ -1,32 +1,32 @@
 package menjacnica;
 
-import java.util.GregorianCalendar;
-import java.util.LinkedList;
-
 import valute.Valuta;
 
 public class StvarnaMenjacnica implements menjacnica.interfejs.Menjacnica {
 
-	LinkedList<Valuta> listaValuta = new LinkedList<Valuta>();
 
+	private Valuta[] nizValuta;
+	public StvarnaMenjacnica(int kapacitet) {
+			nizValuta = new Valuta[31];
+	}
 	@Override
 	public boolean dodajKurs(Valuta val, int dan) {
-		listaValuta.add(dan, val);
+		if(dan < 0 || dan > 30) return false;
+		nizValuta[dan] = val;
 		return true;
 	}
 
 	@Override
 	public boolean izbrisiKurs(Valuta val, int dan) {
-		listaValuta.remove(val);
+		if(dan < 0 || dan > 30) return false;
+		nizValuta[dan] = null;
 		return true;
 	}
 
 	@Override
 	public Valuta pronadjiValutu(int dan) {
-		for (int i = 0; i < listaValuta.size(); i++)
-			if (listaValuta.get(i).getDatumObjaveKursa().get(GregorianCalendar.DAY_OF_MONTH) == dan)
-				return listaValuta.get(i);
-		return null;
+		if(dan < 0 || dan > 30) return null;
+		return nizValuta[dan];
 	}
 
 }
