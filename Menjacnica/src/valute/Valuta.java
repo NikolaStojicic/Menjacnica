@@ -12,7 +12,10 @@ public class Valuta {
 	}
 
 	public void setPunoImeValute(String punoImeValute) {
-		this.punoImeValute = punoImeValute;
+		if (punoImeValute != null)
+			this.punoImeValute = punoImeValute;
+		else
+			throw new RuntimeException("Puno ime valute ne moze biti null!");
 	}
 
 	public String getSkracenoImeValute() {
@@ -20,7 +23,10 @@ public class Valuta {
 	}
 
 	public void setSkracenoImeValute(String skracenoImeValute) {
-		this.skracenoImeValute = skracenoImeValute;
+		if (skracenoImeValute != null)
+			this.skracenoImeValute = skracenoImeValute;
+		else
+			throw new RuntimeException("Skraceno ime valute ne moze biti null!");
 	}
 
 	public GregorianCalendar getDatumObjaveKursa() {
@@ -28,7 +34,10 @@ public class Valuta {
 	}
 
 	public void setDatumObjaveKursa(GregorianCalendar datumObjaveKursa) {
-		this.datumObjaveKursa = datumObjaveKursa;
+		if (datumObjaveKursa != null)
+			this.datumObjaveKursa = datumObjaveKursa;
+		else
+			throw new RuntimeException("Datum objave valute ne moze biti null!");
 	}
 
 	public double getProdajniKurs() {
@@ -36,7 +45,10 @@ public class Valuta {
 	}
 
 	public void setProdajniKurs(double prodajniKurs) {
-		this.prodajniKurs = prodajniKurs;
+		if (prodajniKurs > 0)
+			this.prodajniKurs = prodajniKurs;
+		else
+			throw new RuntimeException("Prodajni kurs ne moze biti manji ili jednak 0");
 	}
 
 	public double getKupovniKurs() {
@@ -44,7 +56,10 @@ public class Valuta {
 	}
 
 	public void setKupovniKurs(double kupovniKurs) {
-		this.kupovniKurs = kupovniKurs;
+		if (kupovniKurs > 0)
+			this.kupovniKurs = kupovniKurs;
+		else
+			throw new RuntimeException("Kupovni kurs ne moze biti manji ili jednak 0");
 	}
 
 	public double getSrednjiKurs() {
@@ -52,7 +67,10 @@ public class Valuta {
 	}
 
 	public void setSrednjiKurs(double srednjiKurs) {
-		this.srednjiKurs = srednjiKurs;
+		if (srednjiKurs > 0)
+			this.srednjiKurs = srednjiKurs;
+		else
+			throw new RuntimeException("Srednji kurs ne moze biti manji ili jednak 0");
 	}
 
 	@Override
@@ -79,8 +97,9 @@ public class Valuta {
 
 	@Override
 	public String toString() {
-		return "Ime valute: " + this.getPunoImeValute() + "(" + this.getSkracenoImeValute() + ")" + ", datum objave kursa: "
-				+ this.getDatumObjaveKursa().getTime() + "\nKurs:\nProdajni: " + this.getProdajniKurs() + "\tKupovni: "
-				+ this.getKupovniKurs() + "\tSrednji: " + this.getSrednjiKurs();
+		return "Ime valute: " + this.getPunoImeValute() + "(" + this.getSkracenoImeValute() + ")"
+				+ ", datum objave kursa: " + this.getDatumObjaveKursa().getTime() + "\nKurs:\nProdajni: "
+				+ this.getProdajniKurs() + "\tKupovni: " + this.getKupovniKurs() + "\tSrednji: "
+				+ this.getSrednjiKurs();
 	}
 }
